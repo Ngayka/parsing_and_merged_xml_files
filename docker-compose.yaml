@@ -9,9 +9,10 @@ services:
   celery-worker:
     build: .
     env_file: .env
-    command: celery -A celery_app.app worker -l info
+    command: celery -A celery_app worker -l info
     volumes:
       - ./data:/data
+      - ./:/app
     depends_on:
       - redis
     restart: unless-stopped
@@ -20,9 +21,10 @@ services:
     build: .
     env_file:
       - .env
-    command: celery -A celery_app.app beat -l info
+    command: celery -A celery_app beat -l info
     volumes:
       - ./data:/data
+      - ./:/app
     depends_on:
       - redis
     restart: unless-stopped
@@ -31,6 +33,7 @@ services:
     image: nginx:latest
     volumes:
       - data:/data
+      - ./:/app
 
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:

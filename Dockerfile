@@ -4,7 +4,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY tasks.py celery_app.py .
+COPY tasks.py celery_app.py /app/
 
 RUN mkdir -p /data/feeds
 
