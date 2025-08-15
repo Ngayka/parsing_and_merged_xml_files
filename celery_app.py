@@ -17,6 +17,6 @@ app.conf.enable_utc = True
 app.conf.beat_schedule = {
     'merge-xml-daily': {
         'task': 'tasks.merge_xml_files_task',
-        'schedule': 10#crontab(hour=10, minute=0),
+        'schedule': crontab(hour=10, minute=0),
     },
 }
